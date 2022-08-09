@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Link, NavLink } from "react-router-dom";
 import ButtonFavorite from "../../helpers/ButtonHeart";
 import { IArticle, ISingleArticleResponse } from "../../models/Article";
@@ -9,7 +9,6 @@ interface IArticlePreviewComponentProps {
 
 const ArticlePreviewComponent = (props: IArticlePreviewComponentProps) => {
   const { article: articleValue } = props;
-
   const [article, setArticle] = useState<ISingleArticleResponse | any>(
     articleValue
   );
@@ -22,7 +21,7 @@ const ArticlePreviewComponent = (props: IArticlePreviewComponentProps) => {
     favoritesCount,
     title,
     description,
-  } = articleValue;
+  } = article;
 
   return (
     <div className="article-preview">

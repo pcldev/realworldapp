@@ -34,7 +34,7 @@ const ButtonFavorite = (props: IButtonFavoriteProps) => {
   return (
     <button
       onClick={onChangeFavoriteSlugHandler}
-      className={`btn btn-outline-primary btn-sm  ${className} ${
+      className={`btn btn-outline-primary btn-sm ${className} ${
         article.favorited ? "active" : ""
       }`}
       disabled={pending}

@@ -13,12 +13,16 @@ interface IHomePageComponentProps {
   articlesFollowing: IMultipleArticlesReponse;
   articles: IMultipleArticlesReponse;
   onChangeTabHandler: (value: number) => void;
+  tag: String;
+  setTag: (value: String) => void;
 }
 
 const HomePageComponent = (props: IHomePageComponentProps) => {
   const {
     isAuthenticated,
     tags,
+    setTag,
+    tag,
     activeTab,
     articles,
     articlesFollowing,
@@ -61,6 +65,17 @@ const HomePageComponent = (props: IHomePageComponentProps) => {
                     Global Feed
                   </Link>
                 </li>
+                {tag !== "" && (
+                  <li className="nav-item">
+                    <Link
+                      onClick={onChangeTabHandler.bind(null, 2)}
+                      className={`nav-link ${activeTab === 2 ? "active" : ""}`}
+                      to=""
+                    >
+                      #{tag}
+                    </Link>
+                  </li>
+                )}
               </ul>
             </div>
           </div>
@@ -93,6 +108,16 @@ const HomePageComponent = (props: IHomePageComponentProps) => {
                   <p>Loading articles...</p>
                 </div>
               )}
+
+              {tag !== "" && articles ? (
+                articles.articles.map((article: any) => (
+                  <ArticlePreviewComponent key={uuidv4()} article={article} />
+                ))
+              ) : (
+                <div style={{ marginTop: "10px" }}>
+                  <p>Loading articles...</p>
+                </div>
+              )}
             </Tabs>
           </div>
 
@@ -103,7 +128,12 @@ const HomePageComponent = (props: IHomePageComponentProps) => {
               <div className="tag-list">
                 {tags ? (
                   tags.tags.map((tag) => (
-                    <PopularTagsComponent key={uuidv4()} tag={tag} />
+                    <PopularTagsComponent
+                      onChangeTabHandler={onChangeTabHandler}
+                      key={uuidv4()}
+                      tag={tag}
+                      setTag={setTag}
+                    />
                   ))
                 ) : (
                   <p>Loading Tags</p>

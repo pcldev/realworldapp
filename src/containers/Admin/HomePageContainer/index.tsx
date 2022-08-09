@@ -1,7 +1,6 @@
 import { useCallback, useEffect, useMemo, useState } from "react";
 import ArticlesAPI from "../../../api/Articles";
 import { getUser } from "../../../commons/storage";
-// import ArticlePreviewComponent from "../../../commons/layouts/ArticlePreview";
 import { IMultipleArticlesReponse } from "../../../models/Article";
 
 import DefaultAPI from "../../../api/Default";
@@ -16,16 +15,19 @@ const HomePageContainer = () => {
   const [articlesFollowing, setArticlesFollowing] =
     useState<IMultipleArticlesReponse>();
   const [tags, setTags] = useState<ITagsResponse>();
+  const [tag, setTag] = useState<String>("");
 
   const [activeTab, setActiveTab] = useState<number>(1);
 
   const onChangeTabHandler = (value: number) => {
     if (value === activeTab) return;
+    if (value !== 2) setTag("");
     setActiveTab(value);
   };
 
   const onGetArticleFollowingsHandler = useCallback(async () => {
     if (!isAuthenticated) return;
+    setArticlesFollowing(null);
     try {
       const response = await ArticlesAPI.getRecentArticlesUserFollowing();
       setArticlesFollowing(response.data);
@@ -35,13 +37,24 @@ const HomePageContainer = () => {
   }, [isAuthenticated]);
 
   const onGetArticlesGlobally = useCallback(async () => {
+    setArticles(null);
+
     try {
-      const response = await ArticlesAPI.getArticlesGlobally();
+      let params = {};
+      let response: any;
+      if (tag.trim() !== "") {
+        params = { ...params, tag: tag };
+      }
+      if (activeTab === 2) {
+        response = await ArticlesAPI.getArticlesGlobally(params);
+      } else {
+        response = await ArticlesAPI.getArticlesGlobally();
+      }
       setArticles(response.data);
     } catch (e) {
       console.log(e);
     }
-  }, []);
+  }, [tag, activeTab]);
 
   const onGetTagsReponse = useCallback(async () => {
     try {
@@ -61,6 +74,8 @@ const HomePageContainer = () => {
     <HomePageComponent
       isAuthenticated={isAuthenticated}
       tags={tags}
+      tag={tag}
+      setTag={setTag}
       activeTab={activeTab}
       articles={articles}
       articlesFollowing={articlesFollowing}

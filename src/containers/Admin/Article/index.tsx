@@ -80,7 +80,7 @@ const ArticleContainer = () => {
       console.log(err);
     }
   };
-
+  console.log(article);
   return (
     <>
       {article && (

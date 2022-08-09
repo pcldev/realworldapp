@@ -1,16 +1,22 @@
-import React from "react";
-import { NavLink } from "react-router-dom";
-
 interface IPopularTagsComponentProps {
   tag: String;
+  setTag: (value: String) => void;
+  onChangeTabHandler: (value: number) => void;
 }
 
 const PopularTagsComponent = (props: IPopularTagsComponentProps) => {
-  const { tag } = props;
+  const { tag, setTag, onChangeTabHandler } = props;
   return (
-    <NavLink to="" className="tag-pill tag-default">
+    <button
+      onClick={() => {
+        onChangeTabHandler(2);
+        setTag(tag);
+      }}
+      style={{ border: "none" }}
+      className="tag-pill tag-default"
+    >
       {tag}
-    </NavLink>
+    </button>
   );
 };
 
