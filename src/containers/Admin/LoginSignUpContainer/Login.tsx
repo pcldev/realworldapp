@@ -3,6 +3,7 @@ import UserAndAuthenAPI from "../../../api/UserAndAuthentication";
 import { setUser } from "../../../commons/storage";
 import LoginComponent from "../../../components/LoginAndSignUpComponent/LoginComponent";
 const LoginContainer = () => {
+  document.title = "Sign In -- Conduit";
   const [email, setEmail] = useState<any>("");
   const [password, setPassword] = useState<any>("");
 

@@ -9,6 +9,7 @@ import HomePageComponent from "../../../components/HomePageComponent";
 import { ITagsResponse } from "../../../models/Comment";
 
 const HomePageContainer = () => {
+  document.title = "Home -- Conduit";
   const isAuthenticated = useMemo(() => getUser(), []);
 
   const [articles, setArticles] = useState<IMultipleArticlesReponse>();

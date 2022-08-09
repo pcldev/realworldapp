@@ -58,6 +58,14 @@ export default function Router() {
       element: <SignUpContainer />,
     },
     {
+      path: "/article/:slug",
+      element: <ArticleContainer />,
+    },
+    {
+      path: `/@:username`,
+      element: <ProfileContainer />,
+    },
+    {
       path: "*",
       element: <Navigate to="/" replace />,
     },

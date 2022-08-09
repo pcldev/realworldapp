@@ -9,6 +9,8 @@ import { IMultipleCommentsReponse } from "../../../models/Comment";
 import { IProfile } from "../../../models/UserProfile";
 
 const ArticleContainer = () => {
+  document.title = "Article -- Conduit";
+
   const isAuthenticated = getUser();
   const params = useParams();
   const navigate = useNavigate();

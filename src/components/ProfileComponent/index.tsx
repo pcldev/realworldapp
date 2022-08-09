@@ -46,7 +46,7 @@ const ProfileComponent = (props: IProfileComponentProps) => {
               />
               <h4>{user.username}</h4>
               <p>{user.bio || "You have no bio yet!"}</p>
-              {user.username === currentUser.username ? (
+              {user.username === currentUser?.username ? (
                 <button
                   onClick={() => {
                     navigate("/settings");

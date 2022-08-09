@@ -3,6 +3,7 @@ import UserAndAuthenAPI from "../../../api/UserAndAuthentication";
 import { setUser } from "../../../commons/storage";
 import SignUpComponent from "../../../components/LoginAndSignUpComponent/SignUpComponent";
 const SignUpContainer = () => {
+  document.title = "Sign Up -- Conduit";
   const [username, setUsername] = useState<any>("");
   const [email, setEmail] = useState<any>("");
   const [password, setPassword] = useState<any>("");

@@ -4,6 +4,7 @@ import ArticlesAPI from "../../../api/Articles";
 import CreateArticleComponent from "../../../components/CreateAndEditComponent/CreateArticleComponent";
 
 const CreateEditArticleContainer = () => {
+  document.title = "Editor -- Conduit";
   const navigate = useNavigate();
   const params = useParams();
 

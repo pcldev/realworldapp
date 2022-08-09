@@ -43,7 +43,7 @@ const ArticleComponent = (props: IArticleComponentProps) => {
   const ButtonComponent = () => {
     return (
       <>
-        {isAuthenticated.username === article.author.username ? (
+        {isAuthenticated?.username === article.author.username ? (
           <>
             <Link
               to={`/editor/${article.slug}`}

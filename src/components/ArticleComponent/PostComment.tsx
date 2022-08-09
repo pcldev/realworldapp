@@ -8,6 +8,7 @@ interface IPostCommentProps {
 const PostComment = (props: IPostCommentProps) => {
   const { isAuthenticated, bodyRef, setBody, onSubmit } = props;
 
+  if (!isAuthenticated) return <></>;
   return (
     <form className="card comment-form" onSubmit={onSubmit}>
       <div className="card-block">

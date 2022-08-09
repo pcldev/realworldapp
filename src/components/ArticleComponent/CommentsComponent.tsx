@@ -28,7 +28,7 @@ const CommentsComponent = (props: ICommentComponentProps) => {
           {comment.author.username.toString()}
         </NavLink>
         <span className="date-posted">{comment.createdAt}</span>
-        {isAuthenticated.username === comment.author.username && (
+        {isAuthenticated?.username === comment.author.username && (
           <span
             onClick={onDeleteCommentHandler.bind(null, comment.id)}
             className="mod-options"

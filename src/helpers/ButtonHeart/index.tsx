@@ -1,5 +1,7 @@
 import React, { useCallback, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import FavoritesAPI from "../../api/Favorites";
+import { getUser } from "../../commons/storage";
 import { IArticle, ISingleArticleResponse } from "../../models/Article";
 
 interface IButtonFavoriteProps {
@@ -13,9 +15,15 @@ interface IButtonFavoriteProps {
 
 const ButtonFavorite = (props: IButtonFavoriteProps) => {
   const { slug, article, setArticle, className } = props;
+  const isAuthenticated = getUser();
+  const navigate = useNavigate();
   const [pending, setPending] = useState<boolean>(false);
 
   const onChangeFavoriteSlugHandler = async () => {
+    if (!isAuthenticated) {
+      navigate("/login");
+      return;
+    }
     setPending(true);
     try {
       if (article.favorited) {

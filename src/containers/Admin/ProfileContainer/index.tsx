@@ -30,6 +30,7 @@ const ProfileContainer = () => {
     try {
       const userResponse = await ProfileAPI.getAProfile(params.username);
       setUser(userResponse.data.profile);
+      document.title = `@${userResponse.data.profile.username} -- Conduit`;
     } catch (err) {
       console.log(err);
     }

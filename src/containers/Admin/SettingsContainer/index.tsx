@@ -4,6 +4,7 @@ import { deleteToken, getUser, setUser } from "../../../commons/storage";
 import SettingsComponent from "../../../components/SettingsComponent";
 
 const SettingsContainer = () => {
+  document.title = "Settings -- Conduit";
   const {
     bio: bioValue,
     email: emailValue,
