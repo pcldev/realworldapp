@@ -26,4 +26,4 @@ const Input = React.forwardRef((props: IInputProps, ref: any) => {
   );
 });
 
-export default Input;
+export default React.memo(Input);

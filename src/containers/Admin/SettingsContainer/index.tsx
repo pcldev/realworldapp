@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useCallback, useState } from "react";
 import UserAndAuthenAPI from "../../../api/UserAndAuthentication";
 import { deleteToken, getUser, setUser } from "../../../commons/storage";
 import SettingsComponent from "../../../components/SettingsComponent";
@@ -46,7 +46,7 @@ const SettingsContainer = () => {
     }
   };
 
-  const onChangeHandler = (value: string, type: string) => {
+  const onChangeHandler = useCallback((value: string, type: string) => {
     const obj = {
       email: setEmail,
       username: setUsername,
@@ -56,7 +56,7 @@ const SettingsContainer = () => {
     };
 
     obj[type](value);
-  };
+  }, []);
 
   return (
     <SettingsComponent
